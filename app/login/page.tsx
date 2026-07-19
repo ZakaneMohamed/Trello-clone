@@ -12,10 +12,11 @@ export default function Login() {
           <h2 className={styles.title}>Login</h2>
           <input className={styles.input} type="email" placeholder="Email" />
           <input className={styles.input} type="password" placeholder="Password" />
-          <button className={styles.button} type="submit">
+          <Link className={styles.button} href="/Page"> 
             Login
-          </button>
-
+          </Link>
+        </div>
+        <div className={styles.signup}>
           <Link className={styles.link} href="/signup">
             Sign up
           </Link>
