@@ -6,6 +6,18 @@ import styles from "./page.module.css";
 export default function Login() {
   const [email, setEmail] =useState("");
   const [password, setPassword] =useState("");
+  async function handleLogin(e){
+    e.preventDefault();
+    const res=await fetch('http://127.0.0.1:8000/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: email, password: password })
+    });
+    const data = await res.json();
+    console.log(data);
+  }
   return (
     <main className={styles.page}>
         <h1 className={styles.subtitle}>
@@ -14,11 +26,13 @@ export default function Login() {
       <section className={styles.card}>
         <div className={styles.form}>
           <h2 className={styles.title}>Login</h2>
+           <form onSubmit={handleLogin} className={styles.form}> 
           <input className={styles.input} type="email" placeholder="Email"  value={email} onChange={(e) => setEmail(e.target.value)}/>
           <input className={styles.input} type="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)}/>
-          <Link className={styles.button} href="/Page"> 
+          <button className={styles.button} type="submit">
             Login
-          </Link>
+          </button>
+        </form>
         </div>
         <div className={styles.signup}>
           <Link className={styles.link} href="/signup">
